@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	pb "upbit-grpc-provider/protos"
+	pb "upbit-grpc-provider/cmd/proto"
 )
 
 func main() {

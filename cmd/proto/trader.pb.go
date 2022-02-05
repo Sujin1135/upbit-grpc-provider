@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.26.0
 // 	protoc        v3.19.4
-// source: protos/trader.proto
+// source: proto/trader.proto
 
-package protos
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
