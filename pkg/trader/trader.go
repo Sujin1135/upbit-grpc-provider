@@ -53,15 +53,17 @@ func NewTrader() *Trader {
 }
 
 type Account struct {
-	currency               string `json:currency`
-	balance                int    `json:balance`
-	locked                 int    `json:locked`
-	avg_buy_price          int    `json:avg_buy_price`
-	avg_buy_price_modified string `json:avg_buy_price_modified`
-	unit_currency          string `json:unit_currency`
+	Currency               string `json:currency`
+	Balance                string `json:balance`
+	Locked                 string `json:locked`
+	Avg_buy_price          string `json:avg_buy_price`
+	Avg_buy_price_modified string `json:avg_buy_price_modified`
+	Unit_currency          string `json:unit_currency`
 }
 
-func (t *Trader) GetAccounts() []Account {
+type Accounts []Account
+
+func (t *Trader) GetAccounts() Accounts {
 	req, err := newHttpRequest(http.MethodGet, "accounts")
 	if err != nil {
 		log.Errorf("Occurred an error when create a new http request for getting account's data, %e", err)
@@ -69,7 +71,9 @@ func (t *Trader) GetAccounts() []Account {
 	res, _ := t.httpClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	data := make([]Account, 10)
-	json.Unmarshal(body, &data)
-	return data
+
+	var accounts Accounts
+	json.Unmarshal(body, &accounts)
+	fmt.Println(accounts)
+	return accounts
 }
